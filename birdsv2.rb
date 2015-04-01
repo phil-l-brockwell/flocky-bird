@@ -1,21 +1,9 @@
-puts
-print 'Welcome '
-$stdout.flush
-sleep(1)
-print 'to'
-$stdout.flush
-sleep(1)
-print '.'
-$stdout.flush
-sleep(1)
-print '.'
-$stdout.flush
-sleep(1)
-print '.'
-$stdout.flush
-sleep(1)
-puts
-puts
+print 'Welcome '; sleep(1)
+print 'to';       sleep(1)
+print '.';        sleep(1)
+print '.';        sleep(1)
+print '.';        sleep(1)
+puts "\n\n"
 puts '......  .         .....    ......  .    .  .     .'
 puts '.       .        .     .  .        .  .     .   . '
 puts '.       .        .     .  .        . .       . .  '
@@ -32,28 +20,14 @@ puts '          .     .  .  .   .    .     .'
 puts '          .     .  .  .    .   .    . '
 puts '          ......   .  .     .  .....  '
 puts
-$stdout.flush
-sleep(2)
-
-puts 'How many birds would you like in your flock?'
-birds = gets.chomp.to_i
-puts
-$stdout.flush
 sleep(1)
 
-puts 'Select your Bird and press Enter'
-puts
-$stdout.flush
-sleep(1)
+puts "How many birds would you like in your flock?\n"
+birds = gets.chomp.to_i; sleep(1)
 
-puts 'Enter a for \'-__-\''
-$stdout.flush
-sleep(1)
-
-puts 'Enter b for \'~..~\''
-$stdout.flush
-sleep(1)
-
+puts "\nSelect your Bird and press Enter\n"; sleep(1)
+puts 'Enter a for \'-__-\'';                 sleep(1)
+puts 'Enter b for \'~..~\'';                 sleep(1)
 puts 'Enter c for \'>..<\''
 birdSelector = gets.chomp.downcase
 
@@ -67,27 +41,18 @@ else
   bird = 'BIRD'
 end
 
-puts
-puts 'You have selected ' + bird
-puts
+puts "\nYou have selected " + bird + "\n"
 
 rows = (birds / 2) + 1
 
-if birds.odd?
-  columns = birds
-else
-  columns = birds + 1
-end
+birds.odd? ? columns = birds : columns = birds + 1
 
 cells = rows * columns
 i = cells
 
 birdsArray = []
 
-while i > 0
-    birdsArray.push('    ')
-    i = i - 1
-end
+1.upto(cells).each { birdsArray.push('    ') }
 
 start = (columns / 2)
 i = start
@@ -103,19 +68,11 @@ while i < cells - 1
   j = j + 2
 end
 
-if birds.even?
-  birdsArray[cells - 1] = '    '
-end
+birdsArray[cells - 1] = '    ' if birds.even?
 
 birdsArray.each_with_index do |element,index|
-  print element
-  $stdout.flush
-  sleep(0.5)
+  print element; sleep(0.5)
   puts if (index + 1) % columns == 0
 end
 
-puts
-$stdout.flush
-sleep(1)
-puts 'NOW GET THE FLOCK OUT OF HERE.'
-puts
+sleep(1); puts "\nNOW GET THE FLOCK OUT OF HERE.\n"
