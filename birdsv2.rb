@@ -1,62 +1,48 @@
-print 'Welcome '; sleep(1)
-print 'to';       sleep(1)
-print '.';        sleep(1)
-print '.';        sleep(1)
-print '.';        sleep(1)
-puts "\n\n"
-puts '......  .         .....    ......  .    .  .     .'
-puts '.       .        .     .  .        .  .     .   . '
-puts '.       .        .     .  .        . .       . .  '
-puts '......  .        .     .  .        ..         .   '
-puts '.       .        .     .  .        . .        .   '
-puts '.       .        .     .  .        .  .       .   '
-puts '.       .......   .....    ......  .    .     .   '
-puts
-puts '          ......   .  ......   .....  '
-puts '          .     .  .  .     .  .    . '
-puts '          .     .  .  .     .  .     .'
-puts '          ......   .  .    .   .     .'
-puts '          .     .  .  .   .    .     .'
-puts '          .     .  .  .    .   .    . '
-puts '          ......   .  .     .  .....  '
-puts
-sleep(1)
-
-puts "How many birds would you like in your flock?\n"
-birds = gets.chomp.to_i; sleep(1)
-
-puts "\nSelect your Bird and press Enter\n"; sleep(1)
-puts 'Enter a for \'-__-\'';                 sleep(1)
-puts 'Enter b for \'~..~\'';                 sleep(1)
-puts 'Enter c for \'>..<\''
-birdSelector = gets.chomp.downcase
-
-if birdSelector == 'a'
-  bird = '-__-'
-elsif birdSelector == 'b'
-  bird = '~..~'
-elsif birdSelector == 'c'
-  bird = '>..<'
-else
-  bird = 'BIRD'
+def welcome
+  print 'Welcome '; sleep(1)
+  print 'to';       sleep(1)
+  3.times { print '.'; sleep(1) }
+  puts "\n\nFlocky Bird"; sleep(1)
 end
 
-puts "\nYou have selected " + bird + "\n"
+def get_birds
+  print "\nHow many birds would you like in your flock?\n"
+  sleep(1); return gets.chomp.to_i
+end
 
-rows = (birds / 2) + 1
+def select_bird
+  birdsHash = { :a => '-__-', :b => '~..~', :c => '>..<' }
+  puts "\nSelect your Bird and press Enter\n"; sleep(1)
+  birdsHash.each { |key, value| puts "Enter #{key} for #{value}"; sleep(1) }
+  birdSelection = gets.chomp.downcase.to_sym
+  birdsHash[birdSelection]
+end
 
-birds.odd? ? columns = birds : columns = birds + 1
+def get_rows(number_of_birds)
+  (number_of_birds / 2) + 1
+end
 
-cells = rows * columns
-i = cells
+def get_columns(number_of_birds)
+  number_of_birds.odd? ? number_of_birds : number_of_birds + 1
+end
 
-birdsArray = []
+def get_cells(rows, columns)
+  rows * columns
+end
 
-1.upto(cells).each { birdsArray.push('    ') }
+def generate_array(cells)
+  Array.new(cells){ '    ' }
+end
 
-start = (columns / 2)
-i = start
-j = 3
+welcome
+number_of_birds = get_birds
+bird = select_bird
+rows = get_rows(number_of_birds)
+columns = get_columns(number_of_birds)
+cells = get_cells(rows, columns)
+birdsArray = generate_array(cells)
+
+start = (columns / 2); i = start; j = 3
 
 birdsArray[i] = bird
 
@@ -68,7 +54,7 @@ while i < cells - 1
   j = j + 2
 end
 
-birdsArray[cells - 1] = '    ' if birds.even?
+birdsArray[cells - 1] = '    ' if number_of_birds.even?
 
 birdsArray.each_with_index do |element,index|
   print element; sleep(0.5)
