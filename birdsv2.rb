@@ -1,26 +1,27 @@
+@birds_hash = { a: '-__-', b: '~..~', c: '>..<' }
+
+def print_with_sleep(string)
+  sleep(1)
+  print string
+end
+
 def welcome
-  print 'Welcome'
-  sleep(1)
-  print ' to'
-  sleep(1)
-  3.times { print '.'; sleep(1) }
-  puts "\n\nFlocky Bird"
-  sleep(1)
+  print_with_sleep 'Welcome'
+  print_with_sleep ' to'
+  3.times { print_with_sleep '.' }
+  print_with_sleep "\n\nFlocky Bird\n"
 end
 
 def input_birds
-  print "\nHow many birds would you like in your flock?\n"
-  sleep(1)
+  print_with_sleep "\nHow many birds would you like in your flock?\n"
   gets.chomp.to_i
 end
 
 def select_bird
-  birds_hash = { a: '-__-', b: '~..~', c: '>..<' }
-  puts "\nSelect your Bird and press Enter\n"
-  sleep(1)
-  birds_hash.each { |key, value| puts "Enter #{key} for #{value}" }
+  print_with_sleep "\nSelect your Bird and press Enter\n"
+  @birds_hash.each { |key, value| print_with_sleep "Enter #{key} for #{value}\n" }
   bird_selection = gets.chomp.downcase.to_sym
-  birds_hash[bird_selection]
+  @birds_hash[bird_selection]
 end
 
 def get_rows(number_of_birds)
@@ -64,10 +65,8 @@ end
 birds_array[cells - 1] = '    ' if number_of_birds.even?
 
 birds_array.each_with_index do |element, index|
-  print element
-  sleep(0.5)
-  puts if (index + 1) % columns == 0
+  print_with_sleep element
+  print "\n" if (index + 1) % columns == 0
 end
 
-sleep(1)
-puts "\nNOW GET THE FLOCK OUT OF HERE."
+print_with_sleep "\nNOW GET THE FLOCK OUT OF HERE.\n"
