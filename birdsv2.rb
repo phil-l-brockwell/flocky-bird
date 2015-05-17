@@ -40,33 +40,37 @@ def generate_array(cells)
   Array.new(cells) { '    ' }
 end
 
+def output_birds
+  @birds_array.each_with_index do |element, index|
+    print_with_sleep element
+    print_with_sleep "\n" if (index + 1) % @columns == 0
+  end
+  print_with_sleep "\nNOW GET THE FLOCK OUT OF HERE.\n"
+end
+
+def add_birds
+  start = (@columns / 2)
+  i = start
+  j = 3
+  @birds_array[i] = @bird
+
+  while i < @cells - 1
+    i = start * j
+    @birds_array[i] = @bird
+    i = (start * j) + (j - 1)
+    @birds_array[i] = @bird
+    j += 2
+  end
+
+  @birds_array[@cells - 1] = '    ' if @number_of_birds.even?
+end
+
 welcome
-number_of_birds = input_birds
-bird = select_bird
-rows = get_rows(number_of_birds)
-columns = get_columns(number_of_birds)
-cells = get_cells(rows, columns)
-birds_array = generate_array(cells)
-
-start = (columns / 2)
-i = start
-j = 3
-
-birds_array[i] = bird
-
-while i < cells - 1
-  i = start * j
-  birds_array[i] = bird
-  i = (start * j) + (j - 1)
-  birds_array[i] = bird
-  j += 2
-end
-
-birds_array[cells - 1] = '    ' if number_of_birds.even?
-
-birds_array.each_with_index do |element, index|
-  print_with_sleep element
-  print "\n" if (index + 1) % columns == 0
-end
-
-print_with_sleep "\nNOW GET THE FLOCK OUT OF HERE.\n"
+@number_of_birds = input_birds
+@bird = select_bird
+rows = get_rows(@number_of_birds)
+@columns = get_columns(@number_of_birds)
+@cells = get_cells(rows, @columns)
+@birds_array = generate_array(@cells)
+add_birds
+output_birds
