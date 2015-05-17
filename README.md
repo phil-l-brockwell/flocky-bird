@@ -8,7 +8,8 @@ This program demonstrates a simple algorithm to arrange a certain number of bird
 
 # Future expansion
 
-To use the flock of birds as a basis for a mobile game.
+* To use the flock of birds as a basis for a mobile game
+* Release flocky bird kata on codewars
 
 # Getting Started
 
