@@ -1,7 +1,8 @@
-@birds_hash = { a: '-__-', b: '~..~', c: '>..<' }
+@birds_hash = { a: :'-__-', b: :'~..~', c: :'>..<' }
+@sleep = 1
 
 def print_with_sleep(string)
-  sleep(1)
+  sleep(@sleep)
   print string
 end
 
