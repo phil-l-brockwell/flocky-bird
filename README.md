@@ -4,7 +4,7 @@ Ruby code used to represent the flocking formation of birds.
 
 Much has been made of the the behaviour of [flocking birds](http://en.wikipedia.org/wiki/Flocking_(behavior)).
 
-This program demonstrates a simple algorithm to arrange a certain number of birds into a flock.
+This program demonstrates a simple algorithm to arrange a desired number of birds into a flock.
 
 # Future expansion
 
